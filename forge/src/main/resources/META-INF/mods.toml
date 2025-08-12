@@ -1,0 +1,36 @@
+modLoader = "javafml"
+loaderVersion = "[46,)"
+#issueTrackerURL = ""
+license = "MIT"
+clientSideOnly = true
+
+[[mods]]
+modId = "todo"
+version = "${version}"
+displayName = "Todo"
+authors = "Space_Mex"
+description = '''
+Simple Configurable Todo Mod
+'''
+#logoFile = ""
+
+[[dependencies.todo]]
+modId = "forge"
+mandatory = true
+versionRange = "[46,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.todo]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.todo]]
+modId = "architectury"
+mandatory = true
+versionRange = "[9.2.14,)"
+ordering = "AFTER"
+side = "BOTH"
