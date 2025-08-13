@@ -3,9 +3,9 @@ package com.github.spacemex.neoforge;
 import com.github.spacemex.TodoMod;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.neoforged.fml.loading.FMLEnvironment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,9 +13,9 @@ import org.slf4j.LoggerFactory;
 @Mod(TodoMod.MOD_ID)
 public final class TodoModNeoForge {
     public static final Logger LOGGER = LoggerFactory.getLogger(TodoMod.MOD_ID);
-    public TodoModNeoForge() {
+    public TodoModNeoForge(IEventBus bus) {
         if (FMLEnvironment.dist == Dist.CLIENT) {
-            FMLJavaModLoadingContext.get().getModEventBus().addListener(this::initClient);
+            bus.addListener(this::initClient);
         }
     }
 
