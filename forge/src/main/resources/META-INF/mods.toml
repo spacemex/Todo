@@ -1,6 +1,6 @@
 modLoader = "javafml"
 loaderVersion = "[47,)"
-#issueTrackerURL = ""
+issueTrackerURL = "https://github.com/spacemex/Todo/issues"
 license = "MIT"
 clientSideOnly = true
 
@@ -12,6 +12,7 @@ authors = "Space_Mex"
 description = '''
 Simple Configurable Todo Mod
 '''
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/todo"
 #logoFile = ""
 
 [[dependencies.todo]]
