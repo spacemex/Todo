@@ -8,8 +8,8 @@
     "Space_Mex"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/todo\n",
+    "sources": "https://github.com/spacemex/Todo\n"
   },
   "license": "MIT",
   "icon": "assets/todo/icon.png",

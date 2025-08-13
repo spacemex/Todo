@@ -1,5 +1,5 @@
 modLoader = "javafml"
-#issueTrackerURL = ""
+issueTrackerURL = ""
 license = "MIT"
 clientSideOnly = true
 
@@ -12,6 +12,7 @@ description = '''
 Simple Configurable Todo Mod
 '''
 #logoFile = ""
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/todo"
 
 [[dependencies.todo]]
 modId = "neoforge"
