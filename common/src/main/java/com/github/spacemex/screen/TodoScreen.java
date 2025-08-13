@@ -32,14 +32,14 @@ public class TodoScreen extends Screen {
     }
 
     @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
+    public boolean mouseScrolled(double mouseX, double mouseY, double horizontalAmount, double verticalAmount) {
         int contentHeight = todos.size() * 25;
         int listTop = listTopPadding;
         int listBottom = this.height - listBottomPadding - 30;
         int visibleHeight = listBottom - listTop;
         int maxScroll = Math.max(0, contentHeight - visibleHeight);
 
-        scrollAmount -= (float) (amount * maxScrollStep);
+        scrollAmount -= (float) (verticalAmount * maxScrollStep);
 
         // Clamp scrollAmount exactly like dragging
         if (scrollAmount < 0) scrollAmount = 0;
@@ -48,6 +48,7 @@ public class TodoScreen extends Screen {
         this.init();
         return true;
     }
+
 
     @Override
     public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
@@ -173,7 +174,7 @@ public class TodoScreen extends Screen {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        this.renderBackground(context);
+        this.renderBackground(context,mouseX,mouseY,delta);
 
         // Title
         context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 15, 0xFFFFFF);
