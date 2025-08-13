@@ -174,7 +174,7 @@ public class TodoScreen extends Screen {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        this.renderBackground(context,mouseX,mouseY,delta);
+        //this.renderBackground(context,mouseX,mouseY,delta); this is why we dont have nice things :(
 
         // Title
         context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 15, 0xFFFFFF);
@@ -225,11 +225,11 @@ public class TodoScreen extends Screen {
         int scissorY = (int) ((mc.getWindow().getScaledHeight() - (y + height)) * scale);
         int scissorW = (int) (width * scale);
         int scissorH = (int) (height * scale);
-        RenderSystem.enableScissor(scissorX, scissorY, scissorW, scissorH);
+        RenderSystem.enableScissorForRenderTypeDraws(scissorX, scissorY, scissorW, scissorH);
     }
 
     private void disableScissor() {
-        RenderSystem.disableScissor();
+        RenderSystem.disableScissorForRenderTypeDraws();
     }
 
     private void fill(DrawContext context, int x1, int y1, int x2, int y2, int color) {
