@@ -3,6 +3,7 @@ package com.github.spacemex.screen;
 import com.github.spacemex.client.TodoStorage;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.Click;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.tooltip.Tooltip;
@@ -49,9 +50,8 @@ public class TodoScreen extends Screen {
         return true;
     }
 
-
     @Override
-    public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
+    public boolean mouseDragged(Click click, double offsetX, double offsetY) {
         if (draggingScrollbar) {
             int listWidth = 200;
             int listX = (this.width - listWidth) / 2;
@@ -65,7 +65,7 @@ public class TodoScreen extends Screen {
             int scrollbarHeight = visibleHeight;
             int thumbHeight = Math.max(20, (int)((float)visibleHeight * ((float)visibleHeight / contentHeight)));
 
-            int deltaYInt = (int) mouseY - dragStartY;
+            int deltaYInt = (int) offsetY - dragStartY;
             float scrollRange = scrollbarHeight - thumbHeight;
 
             scrollAmount = dragStartScroll + (deltaYInt / scrollRange) * maxScroll;
@@ -75,20 +75,21 @@ public class TodoScreen extends Screen {
             this.init();
             return true;
         }
-        return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
+        return super.mouseDragged(click, offsetX, offsetY);
     }
 
     @Override
-    public boolean mouseReleased(double mouseX, double mouseY, int button) {
+    public boolean mouseReleased(Click click) {
         if (draggingScrollbar) {
             draggingScrollbar = false;
             return true;
         }
-        return super.mouseReleased(mouseX, mouseY, button);
+        return super.mouseReleased(click);
     }
 
+
     @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+    public boolean mouseClicked(Click click, boolean doubled) {
         int listWidth = 200;
         int listX = (this.width - listWidth) / 2;
         int listTop = listTopPadding;
@@ -105,16 +106,16 @@ public class TodoScreen extends Screen {
             int thumbHeight = Math.max(20, (int)((float)visibleHeight * ((float)visibleHeight / contentHeight)));
             int thumbY = listTop + (int)((visibleHeight - thumbHeight) * scrollRatio);
 
-            if (mouseX >= scrollbarX && mouseX <= scrollbarX + scrollbarWidth &&
-                    mouseY >= thumbY && mouseY <= thumbY + thumbHeight) {
+            if (click.x() >= scrollbarX && click.x() <= scrollbarX + scrollbarWidth &&
+                    click.y() >= thumbY && click.y() <= thumbY + thumbHeight) {
                 draggingScrollbar = true;
-                dragStartY = (int) mouseY;
+                dragStartY = (int) click.y();
                 dragStartScroll = scrollAmount;
                 return true;
             }
         }
 
-        return super.mouseClicked(mouseX, mouseY, button);
+        return super.mouseClicked(click, doubled);
     }
 
     @Override
